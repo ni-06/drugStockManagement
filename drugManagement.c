@@ -410,3 +410,11 @@ int urgencyScore(int index)
 
     return score;
 }
+
+int compareUrgency(int item1, int item2)
+{
+    int score1 = urgencyScore(item1);
+    int score2 = urgencyScore(item2);
+
+    return score2 - score1; // Descending order
+}
