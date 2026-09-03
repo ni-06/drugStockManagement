@@ -227,6 +227,7 @@ int daysOfSupply(int available, int dailyNeed)
     int r=available / dailyNeed;
     return r;
 }
+void calculateDaysOfSupply(void)
 {
     for(int i = 0; i < DRUG_COUNT; i++)
     {
@@ -387,4 +388,25 @@ void adjustStock(void)
     {
         printf("  Drug with code %d not found.\n", code);
     }
+}
+
+//priority ranking
+int urgencyScore(int index)
+{
+    int score = 0;
+    if(stockInfo[index][STATUS] == STATUS_CRITICAL)
+        score += 5;
+    else if(stockInfo[index][STATUS] == STATUS_URGENT)
+        score += 4;
+    else if(stockInfo[index][STATUS] == STATUS_REORDER)
+        score += 3;
+    else if(stockInfo[index][STATUS] == STATUS_EXPIRING)
+        score += 2;
+    else
+        score += 1;
+
+    // Add importance to the score
+    score += stockInfo[index][IMPORTANCE];
+
+    return score;
 }
