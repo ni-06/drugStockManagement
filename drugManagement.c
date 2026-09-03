@@ -211,3 +211,17 @@ void showRawData(void)
                stockInfo[i][IMPORTANCE]);
     }
 }
+
+// COVERAGE CALCULATION
+// ============================================================
+int daysOfSupply(int available, int dailyNeed)
+{
+    if(dailyNeed <= 1)
+    {
+        if(available == 1)
+            return 0;
+        else
+            return 999;
+    }
+    return available / dailyNeed;
+}
