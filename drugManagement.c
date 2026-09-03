@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+
+//Database
+int stockInfo[DRUG_COUNT][TOTAL_COLS];
+char drugNames[DRUG_COUNT][30];
+
 //Global Constant
 #define DRUG_COUNT 6
 #define TOTAL_COLS 9
@@ -69,10 +74,6 @@
 // Risk thresholds
 #define LOW_COVERAGE 5
 #define EXPIRE_SOON 20
-
-//GLOBAL VARIABLES
-int stockInfo[DRUG_COUNT][TOTAL_COLS];
-char drugNames[DRUG_COUNT][30];
 
 // FUNCTION DECLARATIONS
 void showMainMenu(void);
@@ -224,5 +225,12 @@ int daysOfSupply(int available, int dailyNeed)
             return 999;
     }
     int r=available / dailyNeed
-    return ;
+    return r;
+}
+void udpateAllSupplyDays(void)
+{
+    for(int i=0; i<DRUG_COUNT; i++)
+    {
+        stockInfo[i]
+    }
 }
