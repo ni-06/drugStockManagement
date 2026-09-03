@@ -227,10 +227,12 @@ int daysOfSupply(int available, int dailyNeed)
     int r=available / dailyNeed
     return r;
 }
-void udpateAllSupplyDays(void)
 {
-    for(int i=0; i<DRUG_COUNT; i++)
+    for(int i = 0; i < DRUG_COUNT; i++)
     {
-        stockInfo[i]
+        stockInfo[i][DAYS_LEFT] = daysOfSupply(
+            stockInfo[i][QTY_COL],
+            stockInfo[i][DAILY_USE]
+        );
     }
 }
