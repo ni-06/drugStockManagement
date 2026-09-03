@@ -457,3 +457,27 @@ void arrangeByPriority(void)
         }
     }
 }
+
+//priority report
+void showPriorityList(void)
+{
+    printf("\n\n");
+    printf("  PRIORITY INVENTORY REPORT\n");
+    printf("\n");
+    printf("  Code  Name            Stock  Coverage  Expiry  Imp  Status  Rank\n");
+
+    for(int i = 0; i < DRUG_COUNT; i++)
+    {
+        printf("  %d     %-15s %d     %d days    %d      %d    ",
+               stockInfo[i][ID_COL],
+               drugNames[i],
+               stockInfo[i][QTY_COL],
+               stockInfo[i][DAYS_LEFT],
+               stockInfo[i][EXPIRE_DAYS],
+               stockInfo[i][IMPORTANCE]);
+
+        displayStatus(stockInfo[i][STATUS]);
+        printf("   %d\n", stockInfo[i][RANKING]);
+    }
+    printf("\n");
+}
