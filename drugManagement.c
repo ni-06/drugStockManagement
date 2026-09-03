@@ -418,3 +418,11 @@ int compareUrgency(int item1, int item2)
 
     return score2 - score1; // Descending order
 }
+
+void computeAllRanks(void)
+{
+    for(int i = 0; i < DRUG_COUNT; i++)
+    {
+        stockInfo[i][RANKING] = urgencyScore(i);
+    }
+}
