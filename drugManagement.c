@@ -426,3 +426,34 @@ void computeAllRanks(void)
         stockInfo[i][RANKING] = urgencyScore(i);
     }
 }
+
+//sorting
+void exchangeRows(int a, int b)
+{
+    for(int col = 0; col < TOTAL_COLS; col++)
+    {
+        int temp = stockInfo[a][col];
+        stockInfo[a][col] = stockInfo[b][col];
+        stockInfo[b][col] = temp;
+    }
+
+    // Swap drug names
+    char tempName[30];
+    strcpy(tempName, drugNames[a]);
+    strcpy(drugNames[a], drugNames[b]);
+    strcpy(drugNames[b], tempName);
+}
+
+void arrangeByPriority(void)
+{
+    for(int i = 0; i < DRUG_COUNT - 1; i++)
+    {
+        for(int j = i + 1; j < DRUG_COUNT; j++)
+        {
+            if(compareUrgency(i, j) > 0)
+            {
+                exchangeRows(i, j);
+            }
+        }
+    }
+}
