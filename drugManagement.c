@@ -557,12 +557,12 @@ void showPriorityList(void)
 {
     printf("\n\n");
     printf("\n");
-    printf("  PRIORITY ORDER (1 = Most Urgent)\n");
+    printf("  PRIORITY ORDER (1=Most Urgent)\n");
     printf("\n");
     printf("  Rank  Code  Name            Stock  Coverage  Status\n");
     printf("\n");
 
-    for(int i = 0; i < DRUG_COUNT; i++)
+    for(int i=0; i<DRUG_COUNT; i++)
     {
         printf("  %d     %d     %-15s %d     %d days    ",
                stockInfo[i][RANKING],
