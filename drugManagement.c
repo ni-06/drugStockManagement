@@ -154,5 +154,7 @@ int main()
 }
 void getDrugData(void)
 {
-    
+     printf("\nEnter Drugs Information\n");
+    printf("  Format: Code Stock DailyNeed MinStock Expiry Importance(1-3)\n");
+    printf("  Example: 1 120 35 80 45 3\n\n");
 }
