@@ -189,3 +189,25 @@ void getDrugNames(void)
 
     printf("\n  Names saved successfully!\n");
 }
+
+void showRawData(void)
+{
+    printf("\n\n");
+    printf("  =========================================\n");
+    printf("  CURRENT INVENTORY DATA\n");
+    printf("  =========================================\n");
+    printf("  Code  Name            Stock  Daily  Min   Expiry  Imp\n");
+    printf("  ------------------------------------------------------\n");
+
+    for(int i = 0; i < DRUG_COUNT; i++)
+    {
+        printf("  %d     %-15s %d     %d     %d     %d      %d\n",
+               stockInfo[i][ID_COL],
+               drugNames[i],
+               stockInfo[i][QTY_COL],
+               stockInfo[i][DAILY_USE],
+               stockInfo[i][MIN_LEVEL],
+               stockInfo[i][EXPIRE_DAYS],
+               stockInfo[i][IMPORTANCE]);
+    }
+}
