@@ -1,10 +1,10 @@
 #include <stdio.h>
 
  
-// MEDICINE STOCK MANAGEMENT SYSTEM - COMMUNITY HEALTH CENTRE
+
  
 
-// ---------- PROGRAM CONSTANTS ----------
+
 #define DRUG_COUNT 6
 #define TOTAL_COLS 9
 
@@ -19,22 +19,22 @@
 #define STATUS 7
 #define RANKING 8
 
-// Stock status codes
+// Stock status
 #define STATUS_OK 1
 #define STATUS_REORDER 2
 #define STATUS_URGENT 3
 #define STATUS_EXPIRING 4
 #define STATUS_CRITICAL 5
 
-// Risk thresholds
+
 #define LOW_COVERAGE 5
 #define EXPIRE_SOON 20
 
-// ---------- GLOBAL VARIABLES ----------
+//  DRUG DATA STORAGE
 int stockInfo[DRUG_COUNT][TOTAL_COLS];
 char drugNames[DRUG_COUNT][30];
 
-// ---------- FUNCTION DECLARATIONS ----------
+//  FUNCTION DECLARATIONS 
 void showMainMenu(void);
 void getDrugData(void);
 void getDrugNames(void);
@@ -188,7 +188,7 @@ void showRawData(void)
     printf("  CURRENT INVENTORY DATA\n");
     printf("   \n");
     printf("  Code  Name            Stock  Daily  Min   Expiry  Imp\n");
-    printf("  ------------------------------------------------------\n");
+    printf("  \n");
 
     for(int i = 0; i < DRUG_COUNT; i++)
     {
@@ -305,11 +305,11 @@ void displayStatus(int condition)
 void generateFullReport(void)
 {
     printf("\n\n");
-    printf("   \n");
+    printf("\n");
     printf("  COMPLETE INVENTORY REPORT\n");
     printf("   \n");
     printf("  Code  Name            Stock  Coverage  Expiry  Imp  Status\n");
-    printf("  -----------------------------------------------------------\n");
+    printf("\n");
 
     for(int i = 0; i < DRUG_COUNT; i++)
     {
