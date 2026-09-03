@@ -1,10 +1,5 @@
 #include <stdio.h>
 
- 
-
- 
-
-
 #define DRUG_COUNT 6
 #define TOTAL_COLS 9
 
@@ -55,7 +50,6 @@ void exchangeRows(int a, int b);
 void arrangeByPriority(void);
 void showPriorityList(void);
 
- 
 // MAIN PROGRAM
  
 int main()
@@ -167,15 +161,15 @@ void getDrugData(void)
 
 void getDrugNames(void)
 {
-    printf("\n  --- Enter Drug Names ---\n");
+    printf("Enter Drug Names\n");
 
     for(int i = 0; i < DRUG_COUNT; i++)
     {
-        printf("  Name for drug %d: ", i + 1);
+        printf("Name for drug %d: ", i+1);
         scanf("%s", drugNames[i]);
     }
 
-    printf("\n  Names saved successfully!\n");
+    printf("\nNames saved successfully!\n");
 }
 
  
@@ -208,9 +202,9 @@ void showRawData(void)
  
 int daysOfSupply(int available, int dailyNeed)
 {
-    if(dailyNeed <= 0)
+    if(dailyNeed<=0)
     {
-        if(available == 0)
+        if(available==0)
             return 0;
         else
             return 999;
@@ -234,9 +228,9 @@ void updateAllSupplyDays(void)
  
 int evaluateSituation(int stock, int minimum, int expiry, int essential, int supplyDays)
 {
-    int belowMinimum = (stock < minimum);
-    int nearExpiry = (expiry <= EXPIRE_SOON);
-    int supplyLow = (supplyDays <= LOW_COVERAGE);
+    int belowMinimum = (stock< minimum);
+    int nearExpiry = (expiry <=EXPIRE_SOON);
+    int supplyLow = (supplyDays <=LOW_COVERAGE);
 
     // Decision hierarchy
     if(belowMinimum && nearExpiry)
@@ -260,7 +254,7 @@ int evaluateSituation(int stock, int minimum, int expiry, int essential, int sup
 
 void evaluateAllMedicines(void)
 {
-    for(int i = 0; i < DRUG_COUNT; i++)
+    for(int i=0; i <DRUG_COUNT; i++)
     {
         stockInfo[i][STATUS] = evaluateSituation(
             stockInfo[i][QTY_COL],
@@ -333,7 +327,7 @@ void generateFullReport(void)
 int findDrug(int targetCode, int position)
 {
     // Base case 1: End of array
-    if(position >= DRUG_COUNT)
+    if(position>= DRUG_COUNT)
         return -1;
 
     // Base case 2: Found match
@@ -386,7 +380,7 @@ void adjustStock(void)
     printf("\n  Enter drug code to adjust: ");
     scanf("%d", &targetCode);
 
-    int index = findDrug(targetCode, 0);
+    int index= findDrug(targetCode, 0);
 
     if(index == -1)
     {
@@ -414,12 +408,12 @@ void adjustStock(void)
         return;
     }
 
-    if(operation == 1)
+    if(operation==1)
     {
         stockInfo[index][QTY_COL] += amount;
         printf("\n  Received %d units. New stock: %d\n", amount, stockInfo[index][QTY_COL]);
     }
-    else if(operation == 2)
+    else if(operation ==2)
     {
         if(amount > stockInfo[index][QTY_COL])
         {
