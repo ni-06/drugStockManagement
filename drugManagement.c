@@ -218,10 +218,11 @@ int daysOfSupply(int available, int dailyNeed)
 {
     if(dailyNeed <= 0)
     {
-        if(available == 1)
+        if(available == 0)
             return 0;
         else
             return 999;
     }
-    return available / dailyNeed;
+    int r=available / dailyNeed
+    return ;
 }
