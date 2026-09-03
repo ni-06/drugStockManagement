@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-// ============================================================
+ 
 // MEDICINE STOCK MANAGEMENT SYSTEM - COMMUNITY HEALTH CENTRE
-// ============================================================
+ 
 
 // ---------- PROGRAM CONSTANTS ----------
 #define DRUG_COUNT 6
@@ -55,18 +55,18 @@ void exchangeRows(int a, int b);
 void arrangeByPriority(void);
 void showPriorityList(void);
 
-// ============================================================
+ 
 // MAIN PROGRAM
-// ============================================================
+ 
 int main()
 {
     int userChoice;
 
     printf("\n\n");
-    printf("  =========================================\n");
+    printf("   \n");
     printf("  MEDICINE INVENTORY CONTROL SYSTEM\n");
     printf("  Community Health Centre\n");
-    printf("  =========================================\n");
+    printf("   \n");
 
     do
     {
@@ -105,7 +105,7 @@ int main()
                 break;
             case 8:
                 printf("\n  Thank you for using the system!\n");
-                printf("  =========================================\n\n");
+                printf("   \n\n");
                 break;
             default:
                 printf("\n  Invalid option! Please choose 1-8.\n");
@@ -116,15 +116,15 @@ int main()
     return 0;
 }
 
-// ============================================================
+ 
 // MENU DISPLAY
-// ============================================================
+ 
 void showMainMenu(void)
 {
     printf("\n\n");
-    printf("  =========================================\n");
+    printf("   \n");
     printf("  MAIN MENU\n");
-    printf("  =========================================\n");
+    printf("   \n");
     printf("  1. Enter Medicine Data\n");
     printf("  2. Enter Medicine Names\n");
     printf("  3. View All Data\n");
@@ -133,12 +133,12 @@ void showMainMenu(void)
     printf("  6. Update Stock Quantity\n");
     printf("  7. Show Priority Order\n");
     printf("  8. Exit Program\n");
-    printf("  =========================================\n");
+    printf("   \n");
 }
 
-// ============================================================
+ 
 // INPUT FUNCTIONS
-// ============================================================
+ 
 void getDrugData(void)
 {
     printf("\n  --- Enter Medicine Information ---\n");
@@ -178,15 +178,15 @@ void getDrugNames(void)
     printf("\n  Names saved successfully!\n");
 }
 
-// ============================================================
+ 
 // DISPLAY FUNCTIONS
-// ============================================================
+ 
 void showRawData(void)
 {
     printf("\n\n");
-    printf("  =========================================\n");
+    printf("   \n");
     printf("  CURRENT INVENTORY DATA\n");
-    printf("  =========================================\n");
+    printf("   \n");
     printf("  Code  Name            Stock  Daily  Min   Expiry  Imp\n");
     printf("  ------------------------------------------------------\n");
 
@@ -203,9 +203,9 @@ void showRawData(void)
     }
 }
 
-// ============================================================
+ 
 // COVERAGE CALCULATION
-// ============================================================
+ 
 int daysOfSupply(int available, int dailyNeed)
 {
     if(dailyNeed <= 0)
@@ -229,9 +229,9 @@ void updateAllSupplyDays(void)
     }
 }
 
-// ============================================================
+ 
 // STATUS EVALUATION
-// ============================================================
+ 
 int evaluateSituation(int stock, int minimum, int expiry, int essential, int supplyDays)
 {
     int belowMinimum = (stock < minimum);
@@ -272,9 +272,9 @@ void evaluateAllMedicines(void)
     }
 }
 
-// ============================================================
+ 
 // STATUS TEXT DISPLAY
-// ============================================================
+ 
 void displayStatus(int condition)
 {
     switch(condition)
@@ -299,15 +299,15 @@ void displayStatus(int condition)
     }
 }
 
-// ============================================================
+ 
 // FULL REPORT GENERATION
-// ============================================================
+ 
 void generateFullReport(void)
 {
     printf("\n\n");
-    printf("  =========================================\n");
+    printf("   \n");
     printf("  COMPLETE INVENTORY REPORT\n");
-    printf("  =========================================\n");
+    printf("   \n");
     printf("  Code  Name            Stock  Coverage  Expiry  Imp  Status\n");
     printf("  -----------------------------------------------------------\n");
 
@@ -324,12 +324,12 @@ void generateFullReport(void)
         displayStatus(stockInfo[i][STATUS]);
         printf("\n");
     }
-    printf("  =========================================\n");
+    printf("   \n");
 }
 
-// ============================================================
+ 
 // SEARCH FUNCTION (RECURSIVE)
-// ============================================================
+ 
 int findDrug(int targetCode, int position)
 {
     // Base case 1: End of array
@@ -359,9 +359,9 @@ void searchMedicine(void)
     else
     {
         printf("\n\n");
-        printf("  =========================================\n");
+        printf("   \n");
         printf("  DRUG FOUND\n");
-        printf("  =========================================\n");
+        printf("   \n");
         printf("  Code: %d\n", stockInfo[index][ID_COL]);
         printf("  Name: %s\n", drugNames[index]);
         printf("  Quantity in Stock: %d\n", stockInfo[index][QTY_COL]);
@@ -372,13 +372,13 @@ void searchMedicine(void)
         printf("  Days of Supply Left: %d\n", stockInfo[index][DAYS_LEFT]);
         printf("  Current Status: ");
         displayStatus(stockInfo[index][STATUS]);
-        printf("\n  =========================================\n");
+        printf("\n   \n");
     }
 }
 
-// ============================================================
+ 
 // STOCK ADJUSTMENT
-// ============================================================
+ 
 void adjustStock(void)
 {
     int targetCode, operation, amount;
@@ -395,9 +395,9 @@ void adjustStock(void)
     }
 
     printf("\n\n");
-    printf("  =========================================\n");
+    printf("   \n");
     printf("  STOCK ADJUSTMENT\n");
-    printf("  =========================================\n");
+    printf("   \n");
     printf("  Drug: %s (Code: %d)\n", drugNames[index], stockInfo[index][ID_COL]);
     printf("  Current Quantity: %d\n", stockInfo[index][QTY_COL]);
     printf("\n  1. Receive New Stock\n");
@@ -455,12 +455,12 @@ void adjustStock(void)
     );
 
     printf("  Stock status updated!\n");
-    printf("  =========================================\n");
+    printf("   \n");
 }
 
-// ============================================================
+ 
 // PRIORITY CALCULATION
-// ============================================================
+
 int urgencyScore(int index)
 {
     int condition = stockInfo[index][STATUS];
@@ -519,9 +519,8 @@ void computeAllRanks(void)
     }
 }
 
-// ============================================================
 // SORTING
-// ============================================================
+
 void exchangeRows(int a, int b)
 {
     // Swap numeric data
@@ -558,17 +557,16 @@ void arrangeByPriority(void)
     }
 }
 
-// ============================================================
 // PRIORITY REPORT
-// ============================================================
+
 void showPriorityList(void)
 {
     printf("\n\n");
-    printf("  =========================================\n");
+    printf("\n");
     printf("  PRIORITY ORDER (1 = Most Urgent)\n");
-    printf("  =========================================\n");
+    printf("\n");
     printf("  Rank  Code  Name            Stock  Coverage  Status\n");
-    printf("  -----------------------------------------------------\n");
+    printf("\n");
 
     for(int i = 0; i < DRUG_COUNT; i++)
     {
@@ -582,5 +580,5 @@ void showPriorityList(void)
         displayStatus(stockInfo[i][STATUS]);
         printf("\n");
     }
-    printf("  =========================================\n");
+    printf("\n");
 }
