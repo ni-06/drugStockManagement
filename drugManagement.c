@@ -176,3 +176,16 @@ void getDrugData(void)
 
     printf("\n  Data stored successfully!\n");
 }
+
+void getDrugNames(void)
+{
+    printf("\n  --- Enter Drug Names ---\n");
+
+    for(int i = 0; i < DRUG_COUNT; i++)
+    {
+        printf("  Name for drug %d: ", i + 1);
+        scanf("%s", drugNames[i]);
+    }
+
+    printf("\n  Names saved successfully!\n");
+}
