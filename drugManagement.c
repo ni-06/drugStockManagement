@@ -328,3 +328,63 @@ void generateFullReport(void)
     }
     printf("\n");
 }
+void findDrug(int targetCode, int position)
+{
+    for(int i = 0; i < DRUG_COUNT; i++)
+    {
+        if(stockInfo[i][ID_COL] == targetCode)
+        {
+            position = i;
+            return;
+        }
+    }
+    position = -1; // Not found
+}
+void searchMedicine(void)
+{
+    int code, position;
+    printf("\n  Enter drug code to search: ");
+    scanf("%d", &code);
+
+    findDrug(code, position);
+
+    if(position != -1)
+    {
+        printf("  Drug found: %s\n", drugNames[position]);
+        printf("  Stock: %d\n", stockInfo[position][QTY_COL]);
+        printf("  Daily Use: %d\n", stockInfo[position][DAILY_USE]);
+        printf("  Minimum Level: %d\n", stockInfo[position][MIN_LEVEL]);
+        printf("  Expiry Days: %d\n", stockInfo[position][EXPIRE_DAYS]);
+        printf("  Importance: %d\n", stockInfo[position][IMPORTANCE]);
+        printf("  Days of Supply Left: %d\n", stockInfo[position][DAYS_LEFT]);
+        printf("  Status: ");
+        displayStatus(stockInfo[position][STATUS]);
+        printf("\n");
+    }
+    else
+    {
+        printf("  Drug with code %d not found.\n", code);
+    }
+}
+//stock adjustment
+void adjustStock(void)
+{
+    int code, position, newStock;
+    printf("\n  Enter drug code to adjust stock: ");
+    scanf("%d", &code);
+
+    findDrug(code, position);
+
+    if(position != -1)
+    {
+        printf("  Current stock for %s: %d\n", drugNames[position], stockInfo[position][QTY_COL]);
+        printf("  Enter new stock quantity: ");
+        scanf("%d", &newStock);
+        stockInfo[position][QTY_COL] = newStock;
+        printf("  Stock updated successfully!\n");
+    }
+    else
+    {
+        printf("  Drug with code %d not found.\n", code);
+    }
+}
