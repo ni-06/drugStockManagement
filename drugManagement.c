@@ -154,7 +154,25 @@ int main()
 }
 void getDrugData(void)
 {
-     printf("\nEnter Drugs Information\n");
+    int i;
+    printf("\nEnter Drugs Information\n");
     printf("  Format: Code Stock DailyNeed MinStock Expiry Importance(1-3)\n");
     printf("  Example: 1 120 35 80 45 3\n\n");
+
+    for(int i=0; i<DRUG_COUNT; i++)
+    {
+        scanf("%d %d %d %d %d %d",
+              &stockInfo[i][ID_COL],
+              &stockInfo[i][QTY_COL],
+              &stockInfo[i][DAILY_USE],
+              &stockInfo[i][MIN_LEVEL],
+              &stockInfo[i][EXPIRE_DAYS],
+              &stockInfo[i][IMPORTANCE]);
+
+        stockInfo[i][DAYS_LEFT] = 0;
+        stockInfo[i][STATUS] = 0;
+        stockInfo[i][RANKING] = 0;
+    }
+
+    printf("\n  Data stored successfully!\n");
 }
