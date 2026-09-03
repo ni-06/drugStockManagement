@@ -214,7 +214,7 @@ void showRawData(void)
 }
 
 // COVERAGE CALCULATION
-// ============================================================
+//  
 int daysOfSupply(int available, int dailyNeed)
 {
     if(dailyNeed <= 0)
@@ -224,7 +224,7 @@ int daysOfSupply(int available, int dailyNeed)
         else
             return 999;
     }
-    int r=available / dailyNeed
+    int r=available / dailyNeed;
     return r;
 }
 {
@@ -235,4 +235,96 @@ int daysOfSupply(int available, int dailyNeed)
             stockInfo[i][DAILY_USE]
         );
     }
+}
+
+// STATUS EVALUATION
+int evaluateSituation(int stock, int minimum, int expiry, int essential, int supplyDays)
+{
+    int belowMinimum = (stock < minimum);
+    int nearExpiry = (expiry <= EXPIRE_SOON);
+    int supplyLow = (supplyDays <= LOW_COVERAGE);
+
+    // Decision hierarchy
+    if(belowMinimum && nearExpiry)
+        return STATUS_CRITICAL;
+
+    else if(belowMinimum && essential == 3)
+        return STATUS_URGENT;
+
+    else if(belowMinimum)
+        return STATUS_REORDER;
+
+    else if(essential == 3 && supplyLow)
+        return STATUS_URGENT;
+
+    else if(nearExpiry)
+        return STATUS_EXPIRING;
+
+    else
+        return STATUS_OK;
+}
+
+void evaluateAllMedicines(void)
+{
+    for(int i = 0; i < DRUG_COUNT; i++)
+    {
+        stockInfo[i][STATUS] = evaluateSituation(
+            stockInfo[i][QTY_COL],
+            stockInfo[i][MIN_LEVEL],
+            stockInfo[i][EXPIRE_DAYS],
+            stockInfo[i][IMPORTANCE],
+            stockInfo[i][DAYS_LEFT]
+        );
+    }
+}
+
+//  
+// STATUS TEXT DISPLAY
+//  
+void displayStatus(int condition)
+{
+    switch(condition)
+    {
+        case STATUS_OK:
+            printf("Adequate Stock");
+            break;
+        case STATUS_REORDER:
+            printf("Order Required");
+            break;
+        case STATUS_URGENT:
+            printf("URGENT Order");
+            break;
+        case STATUS_EXPIRING:
+            printf("Expiry Alert");
+            break;
+        case STATUS_CRITICAL:
+            printf("CRITICAL Situation");
+            break;
+        default:
+            printf("Unknown Status");
+    }
+}
+
+// FULL REPORT GENERATION
+void generateFullReport(void)
+{
+    printf("\n\n");
+    printf("  COMPLETE INVENTORY REPORT\n");
+    printf("\n");
+    printf("  Code  Name            Stock  Coverage  Expiry  Imp  Status\n");
+
+    for(int i = 0; i < DRUG_COUNT; i++)
+    {
+        printf("  %d     %-15s %d     %d days    %d      %d    ",
+               stockInfo[i][ID_COL],
+               drugNames[i],
+               stockInfo[i][QTY_COL],
+               stockInfo[i][DAYS_LEFT],
+               stockInfo[i][EXPIRE_DAYS],
+               stockInfo[i][IMPORTANCE]);
+
+        displayStatus(stockInfo[i][STATUS]);
+        printf("\n");
+    }
+    printf("\n");
 }
