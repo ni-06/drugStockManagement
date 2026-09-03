@@ -216,7 +216,7 @@ void showRawData(void)
 // ============================================================
 int daysOfSupply(int available, int dailyNeed)
 {
-    if(dailyNeed <= 1)
+    if(dailyNeed <= 0)
     {
         if(available == 1)
             return 0;
